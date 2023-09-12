@@ -1,1 +1,2 @@
 # Checkpoint_Introduction_to_Data_Structures_and_Procedural_programming
+GoMyCode Checkpoint Introduction to Data Structures and Procedural programming: get_sum_disting and dot_product
