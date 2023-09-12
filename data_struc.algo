@@ -1,0 +1,70 @@
+// Solution of problem 1 :sum of all distinct elements
+PROCEDURE get_sum_disting(set_one : ARRAY_OF INTEGER, set_two : ARRAY_OF INTEGER)
+VAR
+   sum : INTEGER; // the final sum of all distinct elements
+   i, j : INTEGER;// just a pointer
+   trouve : BOOLEAN;
+BEGIN
+   sum:=0;
+   FOR i FROM 0 TO set_one.length -1 STEP 1  DO
+   j:=0;
+   trouve:= false;
+   WHILE (j<set_two.length && !trouve) DO
+      IF (set_one[i] == set_two[j]) THEN //we Compare each element of set one with the second set
+         trouve:=true;
+      END_IF
+   END_WHILE
+   IF (!trouve) THEN
+      sum:= sum+set_one[i]; // we incremente the sum if true
+   END_IF
+   END_FOR
+   
+   FOR i FROM 0 TO set_two.length -1 STEP 1  DO
+   j:=0;
+   trouve:= false;
+   WHILE (j<set_one.length && !trouve) DO
+      IF (set_two[i] == set_one[j]) THEN //we Compare each element of second set with the first set
+         trouve:=true;
+      END_IF
+   END_WHILE
+   IF (!trouve) THEN
+      sum:= sum+set_two[i]; // we incremente the sum if true
+   END_IF
+   END_FOR
+
+   write( "he sum of all distinct elements is: ",sum ) // we print the final sum
+END
+// Solution of problem 2 : determines, for n pairs of given vectors, whether two vectors of given IR are orthogonal
+PROCEDURE dot_product(vector1 : ARRAY_OF INTEGER, vector2 : ARRAY_OF INTEGER)
+VAR
+   pv : INTEGER; // product variable
+   i : INTEGER;// just a pointer
+BEGIN
+   pv:=0; // Initialize the dot product variable to zero
+   FOR i FROM 0 TO vector1.length -1 STEP 1  DO
+   pv:= pv + vector1[i] * vector2[i]; //Multiply corresponding elements and add to the dot product variable
+   END_FOR
+   return pv;
+END
+// the ALGORITHM Dot product
+ALGORITHM Dot product
+VAR
+vectors : INTEGER[][];
+v1 : INTEGER[];
+v2 : INTEGER[];
+i,pv : INTEGER;
+
+BEGIN
+   write("type your n pairs of given vectors");
+   read(vectors);
+FOR i FROM 0 TO vectors.length -1 STEP 1  DO
+   v1:= vectors[i][1]; // get the first vector in the pair
+   v2:= vectors[i][2]; // get the second vector in the pair
+   ps = dot_product(v1, v2); // Call the dot_product procedure
+   IF (ps == 0) THEN
+      write("The vectors", v1, "and", v2, "are orthogonal.");
+   ELSE
+      write("The vectors", v1, "and", v2, "are not orthogonal.");
+   END_IF
+END_FOR
+END
